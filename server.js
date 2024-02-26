@@ -4,7 +4,7 @@ const port = 5001;
 
 app.get("/", (req, res) => {
   // res.send("Data beeing sent from BE");
-  res.json({ id: 2, user: "mike" });
+  res.json({ id: 2, user: "mike2" });
 });
 
 // app.post("/", (req, res) => {
