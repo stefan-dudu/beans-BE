@@ -1,0 +1,170 @@
+[
+    {
+      "_id": "1",
+      "name": "Ethiopian Yirgacheffe",
+      "origin": "Yirgacheffe, Ethiopia",
+      "roastLevel": "Light",
+      "flavorNotes": ["Citrus", "Floral", "Tea-like"],
+      "aroma": "Sweet and fruity",
+      "acidity": 4.5,
+      "body": 3.8,
+      "price": 20.99,
+      "rating": 4.9,
+      "reviews": [
+        {
+          "user": "CoffeeLover123",
+          "comment": "Absolutely love the floral notes in this coffee! Great acidity too.",
+          "date": "2024-02-27"
+        },
+        {
+          "user": "JavaMaster",
+          "comment": "One of the best Ethiopian coffees I've tasted. Highly recommend!",
+          "date": "2024-02-25"
+        }
+      ]
+    },
+    {
+      "_id": "2",
+      "name": "Colombian Supremo",
+      "origin": "Huila, Colombia",
+      "roastLevel": "Medium",
+      "flavorNotes": ["Chocolate", "Nutty", "Caramel"],
+      "aroma": "Rich and inviting",
+      "acidity": 3.9,
+      "body": 4.2,
+      "price": 18.99,
+      "rating": 4.7,
+      "reviews": [
+        {
+          "user": "CoffeeExplorer",
+          "comment": "Smooth and chocolaty, my new favorite morning brew.",
+          "date": "2024-02-26"
+        },
+        {
+          "user": "BeanEnthusiast",
+          "comment": "Balanced and delicious. Great value for the price.",
+          "date": "2024-02-24"
+        }
+      ]
+    },
+    {
+      "_id": "3",
+      "name": "Guatemalan Antigua",
+      "origin": "Antigua, Guatemala",
+      "roastLevel": "Dark",
+      "flavorNotes": ["Spicy", "Bold", "Smoky"],
+      "aroma": "Intense and robust",
+      "acidity": 3.5,
+      "body": 4.5,
+      "price": 22.99,
+      "rating": 4.8,
+      "reviews": [
+        {
+          "user": "DarkRoastFanatic",
+          "comment": "Love the boldness and smoky undertones. Perfect for espresso!",
+          "date": "2024-02-23"
+        },
+        {
+          "user": "GuateCoffeeFan",
+          "comment": "Top-notch coffee from Antigua. Will buy again.",
+          "date": "2024-02-22"
+        }
+      ]
+    },
+    {
+      "_id": "4",
+      "name": "Brazilian Santos",
+      "origin": "Santos, Brazil",
+      "roastLevel": "Medium-Dark",
+      "flavorNotes": ["Nutty", "Chocolate", "Smooth"],
+      "aroma": "Subtle and nutty",
+      "acidity": 3.7,
+      "body": 4.0,
+      "price": 19.99,
+      "rating": 4.5,
+      "reviews": [
+        {
+          "user": "SantosLover",
+          "comment": "Smooth and rich, perfect for any time of day.",
+          "date": "2024-02-21"
+        },
+        {
+          "user": "CoffeeAdventurer",
+          "comment": "Great balance of nutty and chocolate flavors. Highly recommended.",
+          "date": "2024-02-20"
+        }
+      ]
+    },
+    {
+      "_id": "5",
+      "name": "Costa Rican Tarrazú",
+      "origin": "Tarrazú, Costa Rica",
+      "roastLevel": "Light-Medium",
+      "flavorNotes": ["Citrus", "Honey", "Bright"],
+      "aroma": "Fruity and floral",
+      "acidity": 4.2,
+      "body": 3.5,
+      "price": 21.99,
+      "rating": 4.6,
+      "reviews": [
+        {
+          "user": "TarrazuFanatic",
+          "comment": "Love the bright acidity and honey sweetness. A delightful cup!",
+          "date": "2024-02-19"
+        },
+        {
+          "user": "CitrusAficionado",
+          "comment": "Refreshing citrus notes make this coffee stand out. Enjoying every sip.",
+          "date": "2024-02-18"
+        }
+      ]
+    },
+    {
+      "_id": "6",
+      "name": "Kenyan AA",
+      "origin": "Nyeri, Kenya",
+      "roastLevel": "Medium",
+      "flavorNotes": ["Berry", "Wine-like", "Bold"],
+      "aroma": "Fruity and complex",
+      "acidity": 4.3,
+      "body": 4.1,
+      "price": 23.99,
+      "rating": 4.9,
+      "reviews": [
+        {
+          "user": "KenyaLover",
+          "comment": "Bold and flavorful with a delightful wine-like finish. A new favorite!",
+          "date": "2024-02-17"
+        },
+        {
+          "user": "CoffeeConnoisseur",
+          "comment": "The berry notes are exquisite. Definitely worth the price.",
+          "date": "2024-02-16"
+        }
+      ]
+    },
+    {
+      "_id": "7",
+      "name": "Panama Geisha",
+      "origin": "Boquete, Panama",
+      "roastLevel": "Light",
+      "flavorNotes": ["Floral", "Peach", "Tea-like"],
+      "aroma": "Elegant and floral",
+      "acidity": 4.7,
+      "body": 3.6,
+      "price": 45.99,
+      "rating": 5.0,
+      "reviews": [
+        {
+          "user": "GeishaAficionado",
+          "comment": "An exceptional coffee with a perfect balance of floral and fruity notes.",
+          "date": "2024-02-15"
+        },
+        {
+          "user": "LuxuryBrew",
+          "comment": "Expensive but worth every penny. The epitome of coffee perfection.",
+          "date": "2024-02-14"
+        }
+      ]
+    }]
+  

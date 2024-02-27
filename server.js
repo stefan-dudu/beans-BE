@@ -1,15 +1,17 @@
+const fs = require("fs");
 const express = require("express");
 const app = express();
 const port = 5001;
 
-app.get("/", (req, res) => {
-  // res.send("Data beeing sent from BE");
-  res.json({ id: 2, user: "mike2" });
-});
+const beans = JSON.parse(fs.readFileSync(`${__dirname}/data/beans.json`));
 
-// app.post("/", (req, res) => {
-//   res.send("you can post here");
-// });
+app.get("/api/v1/beans", (req, res) => {
+  res.status(200).json({
+    status: "success",
+    results: beans.length,
+    data: { beans },
+  });
+});
 
 app.listen(port, () => {
   console.log(`it ran 2nd time`);
