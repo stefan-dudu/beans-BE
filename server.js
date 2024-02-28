@@ -6,17 +6,15 @@ const port = 5001;
 
 const beans = JSON.parse(fs.readFileSync(`${__dirname}/data/beans.json`));
 
-app.get("/api/v1/beans", (req, res) => {
+const getAllBeans = (req, res) => {
   res.status(200).json({
     status: "success",
     results: beans.length,
     data: { beans },
   });
-});
+};
 
-// console.log("beans", beans[beans.length - 2].id);
-
-app.post("/api/v1/beans", (req, res) => {
+const createBean = (req, res) => {
   const newId = beans[beans.length - 1].id + 1;
   const newBean = Object.assign({ id: newId }, req.body);
   beans.push(newBean);
@@ -28,9 +26,9 @@ app.post("/api/v1/beans", (req, res) => {
       },
     });
   });
-});
+};
 
-app.get("/api/v1/beans/:id", (req, res) => {
+const getBeanById = (req, res) => {
   console.log(req.params);
 
   const id = req.params.id * 1;
@@ -48,9 +46,9 @@ app.get("/api/v1/beans/:id", (req, res) => {
     status: "success",
     data: { bean },
   });
-});
+};
 
-app.patch("/api/v1/beans/:id", (req, res) => {
+const updateBean = (req, res) => {
   if (req.params.id * 1 > beans.length) {
     return res.status(404).json({
       status: "fail",
@@ -63,9 +61,9 @@ app.patch("/api/v1/beans/:id", (req, res) => {
       bean: "<Updated bean !..",
     },
   });
-});
+};
 
-app.delete("/api/v1/beans/:id", (req, res) => {
+const deleteBean = (req, res) => {
   if (req.params.id * 1 > beans.length) {
     return res.status(404).json({
       status: "fail",
@@ -76,7 +74,21 @@ app.delete("/api/v1/beans/:id", (req, res) => {
     status: "success",
     data: null,
   });
-});
+};
+
+// app.get("/api/v1/beans", getAllBeans);
+// app.post("/api/v1/beans", createBean);
+// app.get("/api/v1/beans/:id", getBeanById);
+// app.patch("/api/v1/beans/:id", updateBean);
+// app.delete("/api/v1/beans/:id", deleteBean);
+
+app.route("/api/v1/beans").get(getAllBeans).post(createBean);
+
+app
+  .route("/api/v1/beans/:id")
+  .get(getBeanById)
+  .patch(updateBean)
+  .delete(deleteBean);
 
 app.listen(port, () => {
   console.log(`it ran 2nd time`);
