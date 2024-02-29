@@ -1,22 +1,23 @@
-const express = require("express");
-const morgan = require("morgan");
+const express = require('express');
+const morgan = require('morgan');
 
-const beansRouter = require("./routes/beansRoutes");
-const userRouter = require("./routes/userRoutes");
+const beansRouter = require('./routes/beansRoutes');
+const userRouter = require('./routes/userRoutes');
+
 const app = express();
 
 // Middlewares
 console.log(process.env.NODE_ENV);
-if (process.env.NODE_ENV === "development") {
-  app.use(morgan("dev"));
+if (process.env.NODE_ENV === 'development') {
+  app.use(morgan('dev'));
 }
 app.use(express.json());
 app.use((req, res, next) => {
-  console.log("This is the middleware 🌍");
+  console.log('This is the middleware 🌍');
   next();
 });
 
 // Routes
-app.use("/api/v1/beans", beansRouter);
-app.use("/api/v1/users", userRouter);
+app.use('/api/v1/beans', beansRouter);
+app.use('/api/v1/users', userRouter);
 module.exports = app;
