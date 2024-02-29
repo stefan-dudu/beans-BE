@@ -4,6 +4,8 @@ const beanController = require("../controllers/beanController");
 
 const router = express.Router();
 
+router.param("id", beanController.checkID);
+
 router
   .route("/")
   .get(beanController.getAllBeans)
