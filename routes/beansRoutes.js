@@ -9,7 +9,7 @@ router.param("id", beanController.checkID);
 router
   .route("/")
   .get(beanController.getAllBeans)
-  .post(beanController.createBean);
+  .post(beanController.checkBody, beanController.createBean);
 router
   .route("/:id")
   .get(beanController.getBeanById)
