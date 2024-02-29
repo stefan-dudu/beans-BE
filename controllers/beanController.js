@@ -1,0 +1,73 @@
+const fs = require("fs");
+const beans = JSON.parse(fs.readFileSync(`${__dirname}/../data/beans.json`));
+
+exports.getAllBeans = (req, res) => {
+  // console.log(req.requestTime);
+  res.status(200).json({
+    status: "success",
+    results: beans.length,
+    data: { beans },
+  });
+};
+
+exports.createBean = (req, res) => {
+  const newId = beans[beans.length - 1].id + 1;
+  const newBean = Object.assign({ id: newId }, req.body);
+  beans.push(newBean);
+  fs.writeFile(`${__dirname}/data/beans.json`, JSON.stringify(beans), (err) => {
+    res.status(201).json({
+      status: "success",
+      data: {
+        beans: newBean,
+      },
+    });
+  });
+};
+
+exports.getBeanById = (req, res) => {
+  console.log(req.params);
+
+  const id = req.params.id * 1;
+
+  if (id > beans.length) {
+    return res.status(404).json({
+      status: "fail",
+      message: "Invalid ID",
+    });
+  }
+
+  const bean = beans.find((el) => el.id === id);
+
+  res.status(200).json({
+    status: "success",
+    data: { bean },
+  });
+};
+
+exports.updateBean = (req, res) => {
+  if (req.params.id * 1 > beans.length) {
+    return res.status(404).json({
+      status: "fail",
+      message: "Invalid ID",
+    });
+  }
+  res.status(200).json({
+    status: "success",
+    data: {
+      bean: "<Updated bean !..",
+    },
+  });
+};
+
+exports.deleteBean = (req, res) => {
+  if (req.params.id * 1 > beans.length) {
+    return res.status(404).json({
+      status: "fail",
+      message: "Invalid ID",
+    });
+  }
+  res.status(204).json({
+    status: "success",
+    data: null,
+  });
+};
