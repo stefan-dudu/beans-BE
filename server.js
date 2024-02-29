@@ -1,12 +1,29 @@
 const fs = require("fs");
 const express = require("express");
-const app = express();
-app.use(express.json());
-const port = 5001;
+const morgan = require("morgan");
 
+const app = express();
+
+// Middlewares
+app.use(morgan("dev"));
+app.use(express.json());
+
+app.use((req, res, next) => {
+  console.log("This is the middleware 🌍");
+  next();
+});
+
+// app.use((req, res, next) => {
+//   req.requestTime = new Date().toISOString();
+//   next();
+// });
+
+const port = 5001;
 const beans = JSON.parse(fs.readFileSync(`${__dirname}/data/beans.json`));
 
+// Route handlers
 const getAllBeans = (req, res) => {
+  // console.log(req.requestTime);
   res.status(200).json({
     status: "success",
     results: beans.length,
@@ -76,20 +93,52 @@ const deleteBean = (req, res) => {
   });
 };
 
-// app.get("/api/v1/beans", getAllBeans);
-// app.post("/api/v1/beans", createBean);
-// app.get("/api/v1/beans/:id", getBeanById);
-// app.patch("/api/v1/beans/:id", updateBean);
-// app.delete("/api/v1/beans/:id", deleteBean);
+/// ----------------
 
-app.route("/api/v1/beans").get(getAllBeans).post(createBean);
+const getAllUsers = (req, res) => {
+  res.status(500).json({
+    status: "Error",
+    message: "this route is not yet defined",
+  });
+};
+const createUser = (req, res) => {
+  res.status(500).json({
+    status: "Error",
+    message: "this route is not yet defined",
+  });
+};
+const getUser = (req, res) => {
+  res.status(500).json({
+    status: "Error",
+    message: "this route is not yet defined",
+  });
+};
+const updateUser = (req, res) => {
+  res.status(500).json({
+    status: "Error",
+    message: "this route is not yet defined",
+  });
+};
+const deleteUser = (req, res) => {
+  res.status(500).json({
+    status: "Error",
+    message: "this route is not yet defined",
+  });
+};
 
-app
-  .route("/api/v1/beans/:id")
-  .get(getBeanById)
-  .patch(updateBean)
-  .delete(deleteBean);
+// Routes
+const beansRouter = express.Router();
+app.use("/api/v1/beans", beansRouter);
 
+beansRouter.route("/").get(getAllBeans).post(createBean);
+beansRouter.route("/:id").get(getBeanById).patch(updateBean).delete(deleteBean);
+
+const userRouter = express.Router();
+app.use("/api/v1/users", userRouter);
+userRouter.route("/").get(getAllUsers).post(createUser);
+userRouter.route("/:id").get(getUser).patch(updateUser).delete(deleteUser);
+
+// Start server
 app.listen(port, () => {
   console.log(`it ran 2nd time`);
 });
