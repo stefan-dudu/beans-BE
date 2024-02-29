@@ -30,9 +30,9 @@ const beanSchema = new mongoose.Schema({
 const Bean = mongoose.model('Bean', beanSchema);
 
 const testBean = new Bean({
-  name: 'Brasil',
-  rating: 3,
-  price: 10,
+  name: 'Paraguay',
+  rating: 4.7,
+  price: 12.5,
 });
 
 testBean
