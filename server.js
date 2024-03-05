@@ -4,15 +4,9 @@ const app = require('./app');
 
 dotenv.config({ path: './.env' });
 
-mongoose
-  .connect(process.env.DATABASE, {
-    useNewUrlParser: true,
-    useCreateIndex: true,
-    useFindAndModify: false,
-  })
-  .then(() => {
-    console.log('Connection successful');
-  });
+mongoose.connect(process.env.DATABASE).then(() => {
+  console.log('Connection successful');
+});
 
 const beanSchema = new mongoose.Schema({
   name: {
@@ -30,9 +24,9 @@ const beanSchema = new mongoose.Schema({
 const Bean = mongoose.model('Bean', beanSchema);
 
 const testBean = new Bean({
-  name: 'Cuba',
-  rating: 3,
-  price: 3.99,
+  name: 'Napoli',
+  rating: 2,
+  price: 1.99,
 });
 
 testBean
