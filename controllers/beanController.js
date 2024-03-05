@@ -1,9 +1,23 @@
 const Bean = require('../models/beanModel');
+const APIFeatures = require('../utils/apiFeatures');
+
+exports.aliasTopBeans = (req, res, next) => {
+  req.query.limit = '5';
+  req.query.sort = '-ratingsAverage,price';
+  // what fields to return if we use the down below
+  // req.query.fields = 'name, price'
+  next();
+};
 
 // Controllers
 exports.getAllBeans = async (req, res) => {
   try {
-    const allBeans = await Bean.find();
+    const features = new APIFeatures(Bean.find(), req.query)
+      .filter()
+      .sort()
+      .limitFields()
+      .paginate();
+    const allBeans = await features.query;
 
     res.status(200).json({
       status: 'success',
