@@ -10,5 +10,5 @@ mongoose.connect(process.env.DATABASE).then(() => {
 
 const port = process.env.PORT || 3000;
 app.listen(port, () => {
-  console.log(`it ran 2nd time`);
+  // console.log(`it ran 2nd time`);
 });
