@@ -1,75 +1,86 @@
-const fs = require("fs");
-const beans = JSON.parse(fs.readFileSync(`${__dirname}/../data/beans.json`));
-
-// Middlewares
-exports.checkID = (req, res, next, val) => {
-  console.log(`Bean id is: ${val}`);
-  if (req.params.id * 1 > beans.length) {
-    return res.status(404).json({
-      status: "fail",
-      message: "Invalid ID",
-    });
-  }
-  next();
-};
-
-exports.checkBody = (req, res, next) => {
-  if (!req.body.name && !req.body.price) {
-    return res.status(400).json({
-      satus: "fail",
-      message: "Missing name or price",
-    });
-  }
-  next();
-};
+const Bean = require('../models/beanModel');
 
 // Controllers
-exports.getAllBeans = (req, res) => {
-  res.status(200).json({
-    status: "success",
-    results: beans.length,
-    data: { beans },
-  });
+exports.getAllBeans = async (req, res) => {
+  try {
+    const allBeans = await Bean.find();
+
+    res.status(200).json({
+      status: 'success',
+      results: allBeans.length,
+      data: { allBeans },
+    });
+  } catch (err) {
+    res.status(404).json({
+      status: 'fail',
+      message: err,
+    });
+  }
 };
 
-exports.createBean = (req, res) => {
-  const newId = beans[beans.length - 1].id + 1;
-  const newBean = Object.assign({ id: newId }, req.body);
-  beans.push(newBean);
-  fs.writeFile(`${__dirname}/data/beans.json`, JSON.stringify(beans), (err) => {
+exports.createBean = async (req, res) => {
+  try {
+    const newBean = await Bean.create(req.body);
+
     res.status(201).json({
-      status: "success",
+      status: 'success',
       data: {
         beans: newBean,
       },
     });
-  });
+  } catch (err) {
+    res.status(400).json({
+      status: 'fail',
+      message: 'Invalid data sent',
+    });
+  }
 };
 
-exports.getBeanById = (req, res) => {
-  console.log(req.params);
-
-  const id = req.params.id * 1;
-  const bean = beans.find((el) => el.id === id);
-
-  res.status(200).json({
-    status: "success",
-    data: { bean },
-  });
+exports.getBeanById = async (req, res) => {
+  try {
+    const bean = await Bean.findById(req.params.id);
+    res.status(200).json({
+      status: 'success',
+      data: { bean },
+    });
+  } catch (err) {
+    res.status(400).json({
+      status: 'fail',
+      message: 'Invalid data sent',
+    });
+  }
 };
 
-exports.updateBean = (req, res) => {
-  res.status(200).json({
-    status: "success",
-    data: {
-      bean: "<Updated bean !..",
-    },
-  });
+exports.updateBean = async (req, res) => {
+  try {
+    const bean = await Bean.findByIdAndUpdate(req.params.id, req.body, {
+      new: true,
+    });
+    res.status(200).json({
+      status: 'success',
+      data: {
+        bean,
+      },
+    });
+  } catch (err) {
+    res.status(400).json({
+      status: 'fail',
+      message: 'Invalid data sent',
+    });
+  }
 };
 
-exports.deleteBean = (req, res) => {
-  res.status(204).json({
-    status: "success",
-    data: null,
-  });
+exports.deleteBean = async (req, res) => {
+  try {
+    await Bean.findByIdAndDelete(req.params.id);
+    res.status(204).json({
+      status: 'success',
+      data: null,
+    });
+  } catch (err) {
+    res.status(400).json({
+      status: 'fail',
+      message: 'Unable to delete',
+    });
+  }
 };

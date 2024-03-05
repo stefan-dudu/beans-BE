@@ -1,17 +1,16 @@
-const fs = require("fs");
-const express = require("express");
-const beanController = require("../controllers/beanController");
+const express = require('express');
+const beanController = require('../controllers/beanController');
 
 const router = express.Router();
 
-router.param("id", beanController.checkID);
+// router.param('id', beanController.checkID);
 
 router
-  .route("/")
+  .route('/')
   .get(beanController.getAllBeans)
-  .post(beanController.checkBody, beanController.createBean);
+  .post(beanController.createBean);
 router
-  .route("/:id")
+  .route('/:id')
   .get(beanController.getBeanById)
   .patch(beanController.updateBean)
   .delete(beanController.deleteBean);
