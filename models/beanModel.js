@@ -1,4 +1,5 @@
 const mongoose = require('mongoose');
+const slugify = require('slugify');
 
 const beanSchema = new mongoose.Schema({
   name: {
@@ -7,6 +8,7 @@ const beanSchema = new mongoose.Schema({
     unique: true,
     trim: true,
   },
+  slug: String,
   origin: {
     type: String,
     required: [true, 'A bean must have an origin'],
@@ -37,6 +39,11 @@ const beanSchema = new mongoose.Schema({
   image: {
     type: String,
   },
+});
+
+beanSchema.pre('save', function (next) {
+  this.slug = slugify(this.name, { lower: true });
+  next();
 });
 
 const Bean = mongoose.model('Bean', beanSchema);
