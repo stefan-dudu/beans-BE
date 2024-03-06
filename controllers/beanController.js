@@ -98,3 +98,65 @@ exports.deleteBean = async (req, res) => {
     });
   }
 };
+
+exports.getBeanStats = async (req, res) => {
+  try {
+    const stats = await Bean.aggregate([
+      {
+        $match: { ratingsAverage: { $gte: 4.5 } },
+      },
+      {
+        $group: {
+          _id: { $toUpper: '$roastLevel' },
+          num: { $sum: 1 },
+          numRatings: { $sum: '$ratingsQuantity' },
+          avgRating: { $avg: '$ratingsAverage' },
+          avgPrice: { $avg: '$price' },
+          minPrice: { $min: '$price' },
+          maxPrice: { $max: '$price' },
+        },
+      },
+      {
+        $sort: {
+          avgPrice: 1,
+        },
+      },
+      // {
+      //   $match: { _id: { $ne: 'MEDIUM' } },
+      // },
+    ]);
+
+    res.status(200).json({
+      status: 'success',
+      data: stats,
+    });
+  } catch (err) {
+    res.status(400).json({
+      status: 'fail',
+      message: 'Unable to delete',
+    });
+  }
+};
+
+exports.getFlavourNotes = async (req, res) => {
+  try {
+    const flavourParam = req.params.flavour;
+    const flavour = await Bean.aggregate([
+      {
+        $unwind: '$flavorNotes',
+      },
+      { $match: { flavorNotes: { $eq: flavourParam } } },
+      // for the moment we have all the flav that are passed as params
+      // we can chain them here by adding new obj for sort, group etc..
+    ]);
+    res.status(200).json({
+      status: 'success',
+      data: flavour,
+    });
+  } catch (err) {
+    res.status(400).json({
+      status: 'fail',
+      message: 'Unable to delete',
+    });
+  }
+};

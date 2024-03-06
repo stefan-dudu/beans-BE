@@ -9,6 +9,9 @@ router
   .route('/top-5')
   .get(beanController.aliasTopBeans, beanController.getAllBeans);
 
+router.route('/beans-stats').get(beanController.getBeanStats);
+router.route('/flavour-notes/:flavour').get(beanController.getFlavourNotes);
+
 router
   .route('/')
   .get(beanController.getAllBeans)
