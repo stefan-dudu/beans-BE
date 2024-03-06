@@ -1,5 +1,6 @@
 const mongoose = require('mongoose');
 const slugify = require('slugify');
+// const validator = require('validator');
 
 const beanSchema = new mongoose.Schema({
   name: {
@@ -7,6 +8,9 @@ const beanSchema = new mongoose.Schema({
     required: [true, 'A bean must have a name'],
     unique: true,
     trim: true,
+    maxlength: [40, 'A bean name can have no more then 40 characters'],
+    minlength: [5, 'A bean name can have no less then 5 characters'],
+    // validate: [validator.isAlpha, 'The bean name cannot contain numbers'],
   },
   slug: String,
   origin: {
@@ -15,6 +19,10 @@ const beanSchema = new mongoose.Schema({
   },
   roastLevel: {
     type: String,
+    enum: {
+      values: ['Light', 'Light-Medium', 'Medium', 'Medium-Dark', 'Dark'],
+      message: 'Please choose between the preselected options',
+    },
   },
   flavorNotes: [String],
   aroma: {
@@ -30,7 +38,12 @@ const beanSchema = new mongoose.Schema({
     type: Number,
     required: true,
   },
-  ratingsAverage: { type: Number, default: 3.01 },
+  ratingsAverage: {
+    type: Number,
+    default: 3.01,
+    min: [1, 'Rating must be above 1.0'],
+    max: [5, 'Rating must be bellow 5.0'],
+  },
   ratingsQuantity: { type: Number, default: 0 },
   summary: {
     type: String,

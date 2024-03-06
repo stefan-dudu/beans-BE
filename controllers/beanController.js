@@ -45,7 +45,7 @@ exports.createBean = async (req, res) => {
   } catch (err) {
     res.status(400).json({
       status: 'fail',
-      message: 'Invalid data sent',
+      message: err,
     });
   }
 };
@@ -60,7 +60,7 @@ exports.getBeanById = async (req, res) => {
   } catch (err) {
     res.status(400).json({
       status: 'fail',
-      message: 'Invalid data sent',
+      message: err,
     });
   }
 };
@@ -69,6 +69,7 @@ exports.updateBean = async (req, res) => {
   try {
     const bean = await Bean.findByIdAndUpdate(req.params.id, req.body, {
       new: true,
+      runValidators: true,
     });
     res.status(200).json({
       status: 'success',
@@ -79,7 +80,7 @@ exports.updateBean = async (req, res) => {
   } catch (err) {
     res.status(400).json({
       status: 'fail',
-      message: 'Invalid data sent',
+      message: err,
     });
   }
 };
@@ -107,7 +108,7 @@ exports.getBeanStats = async (req, res) => {
       },
       {
         $group: {
-          _id: { $toUpper: '$roastLevel' },
+          _id: '$roastLevel',
           num: { $sum: 1 },
           numRatings: { $sum: '$ratingsQuantity' },
           avgRating: { $avg: '$ratingsAverage' },
