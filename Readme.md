@@ -1,5 +1,6 @@
 <!-- to run the BE : npx nodemon server.js -->
 
-to run the BE : npm start
+to run the BE : _npm start_
 
-to run start:prod / debug: npm run \_\_\_
+start:prod / debug:
+to run _start:prod / debug_
