@@ -12,6 +12,7 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "bcryptjs": "^2.4.3",
     "dotenv": "^16.4.5",
     "eslint": "^8.57.0",
     "eslint-config-airbnb": "^19.0.4",
@@ -32,5 +33,9 @@
   },
   "engines": {
     "node": ">=10.6.0"
+  },
+  "devDependencies": {
+    "@types/bcryptjs": "^2.4.6",
+    "@types/validator": "^13.11.9"
   }
 }
