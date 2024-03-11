@@ -21,6 +21,10 @@ router
   .route('/:id')
   .get(beanController.getBeanById)
   .patch(beanController.updateBean)
-  .delete(beanController.deleteBean);
+  .delete(
+    authController.protect,
+    authController.restrictTo('admin'),
+    beanController.deleteBean,
+  );
 
 module.exports = router;
