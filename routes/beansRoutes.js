@@ -1,5 +1,6 @@
 const express = require('express');
 const beanController = require('../controllers/beanController');
+const authController = require('../controllers/authController');
 
 const router = express.Router();
 
@@ -14,7 +15,7 @@ router.route('/flavour-notes/:flavour').get(beanController.getFlavourNotes);
 
 router
   .route('/')
-  .get(beanController.getAllBeans)
+  .get(authController.protect, beanController.getAllBeans)
   .post(beanController.createBean);
 router
   .route('/:id')
