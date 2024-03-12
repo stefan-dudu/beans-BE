@@ -204,5 +204,11 @@ exports.resetPassword = catchAsync(async (req, res, next) => {
   // 3) update changedpassAt poperty for the user
 
   // 4) Log the user in, send JWT
-  createSendToken(user, 200, res);
+  // createSendToken(user, 200, res);
+
+  const token = signToken(user._id);
+  res.status(200).json({
+    status: 'succes pass reseted',
+    token,
+  });
 });
