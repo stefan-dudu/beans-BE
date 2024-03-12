@@ -17,17 +17,17 @@ const signToken = (id) =>
 
 const createSendToken = (user, statusCode, res) => {
   const token = signToken(user._id);
-  const cookieOptions = {
-    expires: new Date(
-      Date.now() + process.env.JWT_COOKIE_EXPIRES_IN * 24 * 60 * 60 * 1000,
-    ),
-    httpOnly: true,
-  };
-  if (process.env.NODE_ENV === 'production') cookieOptions.secure = true;
-  res.cookie('jwt', token, cookieOptions);
+  // const cookieOptions = {
+  //   expires: new Date(
+  //     Date.now() + process.env.JWT_COOKIE_EXPIRES_IN * 24 * 60 * 60 * 1000,
+  //   ),
+  //   httpOnly: true,
+  // };
+  // if (process.env.NODE_ENV === 'production') cookieOptions.secure = true;
+  // res.cookie('jwt', token, cookieOptions);
 
-  // removes the password from the output
-  user.password = undefined;
+  // // removes the password from the output
+  // user.password = undefined;
 
   res.status(statusCode).json({
     status: 'success',
@@ -51,13 +51,9 @@ exports.signup = catchAsync(async (req, res, next) => {
   const token = jwt.sign({ id: newUser._id }, process.env.JWT_SECRET, {
     expiresIn: process.env.JWT_EXPIRES_IN,
   });
-  res.status(201).json({
-    status: 'succes',
-    token,
-    data: {
-      user: newUser,
-    },
-  });
+
+
+  createSendToken(newUser, 201, res);
 });
 
 exports.login = catchAsync(async (req, res, next) => {
@@ -78,11 +74,7 @@ exports.login = catchAsync(async (req, res, next) => {
   // 3) if all good, send the token to client
 
   //   createSendToken(user, 200, res);
-  const token = signToken(user._id);
-  res.status(200).json({
-    status: 'success',
-    token,
-  });
+  createSendToken(user, 200, res);
 });
 
 exports.protect = catchAsync(async (req, res, next) => {
@@ -206,9 +198,39 @@ exports.resetPassword = catchAsync(async (req, res, next) => {
   // 4) Log the user in, send JWT
   // createSendToken(user, 200, res);
 
-  const token = signToken(user._id);
-  res.status(200).json({
-    status: 'succes pass reseted',
-    token,
-  });
+  createSendToken(user, 200, res);
+});
+
+exports.updatePassword = catchAsync(async (req, res, next) => {
+  const { password, passwordConfirm, passwordCurrent } = req.body;
+  // 1) get user from collection
+  const user = await User.findById(req.user.id).select('+password');
+  if (!user) {
+    return next(
+      new AppError('To update the password, you need a valid user', 404)
+    );
+  }
+  // 2) check if POSTed current password is correct
+
+  const postedCurrentPassword = await user.correctPassword(
+    passwordCurrent,
+    user.password
+  );
+  // console.log('postedCurrentPassword', postedCurrentPassword);
+  if (!postedCurrentPassword) {
+    return next(
+      new AppError(
+        'Wrong password inserted when trying to update it. Try again',
+        401
+      )
+    );
+  }
+
+  // 3) if so, update the pass
+  user.password = password;
+  user.passwordConfirm = passwordConfirm;
+  await user.save();
+  // User.findByIdAndUpdate will not work : The pre MW will not run nor the passwordConfirm validate
+  // 4) log user in, send JWT
+  createSendToken(user, 200, res);
 });
