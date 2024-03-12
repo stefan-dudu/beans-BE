@@ -52,7 +52,6 @@ exports.signup = catchAsync(async (req, res, next) => {
     expiresIn: process.env.JWT_EXPIRES_IN,
   });
 
-
   createSendToken(newUser, 201, res);
 });
 
@@ -207,22 +206,22 @@ exports.updatePassword = catchAsync(async (req, res, next) => {
   const user = await User.findById(req.user.id).select('+password');
   if (!user) {
     return next(
-      new AppError('To update the password, you need a valid user', 404)
+      new AppError('To update the password, you need a valid user', 404),
     );
   }
   // 2) check if POSTed current password is correct
 
   const postedCurrentPassword = await user.correctPassword(
     passwordCurrent,
-    user.password
+    user.password,
   );
   // console.log('postedCurrentPassword', postedCurrentPassword);
   if (!postedCurrentPassword) {
     return next(
       new AppError(
         'Wrong password inserted when trying to update it. Try again',
-        401
-      )
+        401,
+      ),
     );
   }
 
