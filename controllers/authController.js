@@ -73,7 +73,7 @@ exports.login = catchAsync(async (req, res, next) => {
 });
 
 exports.protect = catchAsync(async (req, res, next) => {
-  console.log('protect 🥲');
+  console.log('protect 🛡️');
   // 1) get token adn check it it's there
   let token;
   if (
@@ -81,7 +81,7 @@ exports.protect = catchAsync(async (req, res, next) => {
     req.headers.authorization.startsWith('Bearer')
   ) {
     token = req.headers.authorization.split(' ')[1];
-    console.log('token', token);
+    // console.log('token', token);
   }
 
   if (!token) {

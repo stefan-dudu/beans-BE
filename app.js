@@ -1,12 +1,12 @@
 const express = require('express');
 const morgan = require('morgan');
-const AppError = require('./utils/appError');
-const globalErrorHandler = require('./controllers/errorController');
 const rateLimit = require('express-rate-limit');
 const helmet = require('helmet');
 const mongoSantize = require('express-mongo-sanitize');
 const xss = require('xss-clean');
 const hpp = require('hpp');
+const AppError = require('./utils/appError');
+const globalErrorHandler = require('./controllers/errorController');
 
 const beansRouter = require('./routes/beansRoutes');
 const userRouter = require('./routes/userRoutes');
