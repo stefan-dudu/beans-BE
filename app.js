@@ -10,6 +10,7 @@ const globalErrorHandler = require('./controllers/errorController');
 
 const beansRouter = require('./routes/beansRoutes');
 const userRouter = require('./routes/userRoutes');
+const reviewRouter = require('./routes/reviewsRoutes');
 
 const app = express();
 
@@ -43,6 +44,13 @@ app.use(xss());
 // Routes
 app.use('/api/v1/beans', beansRouter);
 app.use('/api/v1/users', userRouter);
+app.use('/api/v1/reviews', reviewRouter);
+
+app.all('*', (req, res, next) => {
+  next(new AppError(`Can't find ${req.originalUrl} on this server`, 404));
+});
+
+app.use(globalErrorHandler);
 
 // prevent prarameter polution
 app.use(
@@ -60,11 +68,5 @@ app.use(
     ],
   }),
 );
-
-app.all('*', (req, res, next) => {
-  next(new AppError(`Can't find ${req.originalUrl} on this server`, 404));
-});
-
-app.use(globalErrorHandler);
 
 module.exports = app;

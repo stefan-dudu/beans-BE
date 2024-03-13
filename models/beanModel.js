@@ -52,6 +52,18 @@ const beanSchema = new mongoose.Schema({
   image: {
     type: String,
   },
+  locations: [
+    {
+      type: {
+        type: String,
+        default: 'Point',
+        enum: ['Point'],
+      },
+      coordinates: [Number],
+      address: String,
+      description: String,
+    },
+  ],
 });
 
 beanSchema.pre('save', function (next) {

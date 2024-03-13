@@ -1,0 +1,235 @@
+[
+    {
+      "name": "Guatemalan Antigua",
+      "origin": "Antigua, Guatemala",
+      "roastLevel": "Dark",
+      "flavorNotes": ["Spicy", "Bold", "Smoky"],
+      "aroma": "Intense and robust",
+      "acidity": 3.5,
+      "body": 4.5,
+      "price": 22.99,
+      "ratingsAverage": 4.8,
+      "ratingsQuantity": 6,
+      "summary": "Love the boldness and smoky undertones. Perfect for espresso!",
+      "image": "bean5.jpg",
+      "locations": [
+        {
+          "_id": "5c88fa8cf4afda39709c2957",
+          "description": "Sombrero Beach",
+          "type": "Point",
+          "coordinates": [-81.0784, 24.707496]
+        },
+        {
+          "_id": "5c88fa8cf4afda39709c2958",
+          "description": "Another Location",
+          "type": "Point",
+          "coordinates": [-82.3456, 25.1234]
+        }
+      ]
+    },
+    {
+      "name": "Ethiopian Yirgacheffe",
+      "origin": "Yirgacheffe, Ethiopia",
+      "roastLevel": "Light",
+      "flavorNotes": ["Floral", "Citrus", "Tea-like"],
+      "aroma": "Delicate and fragrant",
+      "acidity": 4.0,
+      "body": 3.0,
+      "price": 24.99,
+      "ratingsAverage": 4.5,
+      "ratingsQuantity": 8,
+      "summary": "Bright and lively with floral and citrus notes.",
+      "image": "yirgacheffe.jpg",
+      "locations": [
+        {
+          "_id": "5c88fa8cf4afda39709c2959",
+          "description": "Haro Wachu",
+          "type": "Point",
+          "coordinates": [38.0495, 6.7063]
+        }
+      ]
+    },
+    {
+      "name": "Colombian Supremo",
+      "origin": "Colombia",
+      "roastLevel": "Medium",
+      "flavorNotes": ["Nutty", "Chocolate", "Caramel"],
+      "aroma": "Sweet and inviting",
+      "acidity": 3.0,
+      "body": 4.0,
+      "price": 18.99,
+      "ratingsAverage": 4.3,
+      "ratingsQuantity": 5,
+      "summary": "Smooth with notes of nuts and chocolate.",
+      "image": "colombian_supremo.jpg",
+      "locations": [
+        {
+          "_id": "5c88fa8cf4afda39709c2960",
+          "description": "Medellin",
+          "type": "Point",
+          "coordinates": [-75.5636, 6.2442]
+        }
+      ]
+    },
+    {
+      "name": "Sumatra Mandheling",
+      "origin": "Sumatra, Indonesia",
+      "roastLevel": "Dark",
+      "flavorNotes": ["Earthy", "Herbal", "Spicy"],
+      "aroma": "Earthy and bold",
+      "acidity": 2.5,
+      "body": 4.7,
+      "price": 21.99,
+      "ratingsAverage": 4.7,
+      "ratingsQuantity": 7,
+      "summary": "Rich and full-bodied with earthy and herbal notes.",
+      "image": "sumatra_mandheling.jpg",
+      "locations": [
+        {
+          "_id": "5c88fa8cf4afda39709c2961",
+          "description": "Lake Toba",
+          "type": "Point",
+          "coordinates": [2.9733, 2.5998]
+        }
+      ]
+    },
+    {
+      "name": "Kenyan AA",
+      "origin": "Kenya",
+      "roastLevel": "Medium",
+      "flavorNotes": ["Bright", "Fruity", "Wine-like"],
+      "aroma": "Complex and vibrant",
+      "acidity": 4.5,
+      "body": 3.5,
+      "price": 27.99,
+      "ratingsAverage": 4.9,
+      "ratingsQuantity": 9,
+      "summary": "Bold and fruity with a wine-like acidity.",
+      "image": "kenyan_aa.jpg",
+      "locations": [
+        {
+          "_id": "5c88fa8cf4afda39709c2962",
+          "description": "Nairobi",
+          "type": "Point",
+          "coordinates": [36.8219, -1.2864]
+        }
+      ]
+    },
+    {
+      "name": "Brazilian Santos",
+      "origin": "Santos, Brazil",
+      "roastLevel": "Medium-Dark",
+      "flavorNotes": ["Chocolate", "Toffee", "Spice"],
+      "aroma": "Rich and spicy",
+      "acidity": 3.5,
+      "body": 4.2,
+      "price": 19.99,
+      "ratingsAverage": 4.2,
+      "ratingsQuantity": 4,
+      "summary": "Smooth with a balance of chocolate and spice.",
+      "image": "brazilian_santos.jpg",
+      "locations": [
+        {
+          "_id": "5c88fa8cf4afda39709c2963",
+          "description": "São Paulo",
+          "type": "Point",
+          "coordinates": [-46.6333, -23.5505]
+        }
+      ]
+    },
+    {
+      "name": "Costa Rican Tarrazú",
+      "origin": "Tarrazú, Costa Rica",
+      "roastLevel": "Medium",
+      "flavorNotes": ["Citrus", "Berry", "Chocolate"],
+      "aroma": "Fruity and floral",
+      "acidity": 4.2,
+      "body": 3.8,
+      "price": 23.99,
+      "ratingsAverage": 4.6,
+      "ratingsQuantity": 7,
+      "summary": "Bright and lively with notes of citrus and berries.",
+      "image": "costa_rican_tarrazu.jpg",
+      "locations": [
+        {
+          "_id": "5c88fa8cf4afda39709c2964",
+          "description": "San José",
+          "type": "Point",
+          "coordinates": [-84.0907, 9.9281]
+        }
+      ]
+    },
+    {
+      "name": "Panama Geisha",
+      "origin": "Boquete, Panama",
+      "roastLevel": "Light",
+      "flavorNotes": ["Floral", "Citrus", "Tea-like"],
+      "aroma": "Delicate and aromatic",
+      "acidity": 4.5,
+      "body": 3.0,
+      "price": 39.99,
+      "ratingsAverage": 4.9,
+      "ratingsQuantity": 11,
+      "summary": "Highly sought after for its delicate floral and citrus notes.",
+      "image": "panama_geisha.jpg",
+      "locations": [
+        {
+          "_id": "5c88fa8cf4afda39709c2965",
+          "description": "Boquete",
+          "type": "Point",
+          "coordinates": [-82.4176, 8.7865]
+        },
+        {
+          "_id": "5c88fa8cf4afda39709c2966",
+          "description": "Another Location",
+          "type": "Point",
+          "coordinates": [-82.4312, 8.8049]
+        }
+      ]
+    },
+    {
+      "name": "Hawaiian Kona",
+      "origin": "Kona, Hawaii, USA",
+      "roastLevel": "Medium",
+      "flavorNotes": ["Nutty", "Sweet", "Citrus"],
+      "aroma": "Subtle and sweet",
+      "acidity": 3.8,
+      "body": 3.7,
+      "price": 34.99,
+      "ratingsAverage": 4.7,
+      "ratingsQuantity": 10,
+      "summary": "Deliciously smooth with hints of nuts and citrus.",
+      "image": "hawaiian_kona.jpg",
+      "locations": [
+        {
+          "_id": "5c88fa8cf4afda39709c2967",
+          "description": "Kona Coffee Living History Farm",
+          "type": "Point",
+          "coordinates": [-155.9964, 19.6316]
+        }
+      ]
+    },
+    {
+      "name": "Jamaican Blue Mountain",
+      "origin": "Blue Mountains, Jamaica",
+      "roastLevel": "Medium",
+      "flavorNotes": ["Rich", "Smooth", "Sweet"],
+      "aroma": "Elegant and complex",
+      "acidity": 4.0,
+      "body": 4.0,
+      "price": 49.99,
+      "ratingsAverage": 4.8,
+      "ratingsQuantity": 12,
+      "summary": "Exquisite coffee with a smooth and luxurious flavor profile.",
+      "image": "jamaican_blue_mountain.jpg",
+      "locations": [
+        {
+          "_id": "5c88fa8cf4afda39709c2968",
+          "description": "Clifton Mount Estate",
+          "type": "Point",
+          "coordinates": [-76.6598, 18.0536]
+        }
+      ]
+    }
+  ]
+  

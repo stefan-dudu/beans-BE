@@ -42,7 +42,7 @@ exports.getBeanById = catchAsync(async (req, res, next) => {
   const bean = await Bean.findById(req.params.id);
 
   if (!bean) {
-    return next(new AppError('No tour bean found with this id', 404));
+    return next(new AppError('No bean found with this id', 404));
   }
   res.status(200).json({
     status: 'success',
@@ -57,7 +57,7 @@ exports.updateBean = catchAsync(async (req, res, next) => {
   });
 
   if (!bean) {
-    return next(new AppError('No tour bean found with this id', 404));
+    return next(new AppError('No bean found with this id', 404));
   }
   res.status(200).json({
     status: 'success',
@@ -70,7 +70,7 @@ exports.updateBean = catchAsync(async (req, res, next) => {
 exports.deleteBean = catchAsync(async (req, res, next) => {
   const bean = await Bean.findByIdAndDelete(req.params.id);
   if (!bean) {
-    return next(new AppError('No tour bean found with this id', 404));
+    return next(new AppError('No bean found with this id', 404));
   }
   res.status(204).json({
     status: 'success',

@@ -1,0 +1,187 @@
+[
+    {
+      "name": "Ethiopian Sidamo",
+      "origin": "Sidamo, Ethiopia",
+      "roastLevel": "Light",
+      "flavorNotes": ["Blueberry", "Citrus", "Floral"],
+      "aroma": "Fruity and floral",
+      "acidity": 4.2,
+      "body": 3.5,
+      "price": 24.99,
+      "ratingsAverage": 4.7,
+      "ratingsQuantity": 5,
+      "summary": "Delightful blueberry notes with a bright acidity.",
+      "image": "ethiopian_sidamo.jpg",
+      "vendors": [
+        {
+          "name": "Stumptown Coffee Roasters",
+          "location": {
+            "_id": "5c88fa8cf4afda39709c2954",
+            "description": "Portland, USA",
+            "type": "Point",
+            "coordinates": [-122.6736, 45.5231]
+          },
+          "country": "United States",
+          "city": "Portland",
+          "address": "4525 SE Division St, Portland, OR 97206",
+          "phoneNumber": "+1 855-711-3385",
+          "website": "https://www.stumptowncoffee.com/",
+          "description": "Stumptown Coffee Roasters is a specialty coffee roaster and retailer known for its direct trade practices and commitment to quality. They offer a variety of single-origin coffees from around the world."
+        },
+        {
+          "name": "Monmouth Coffee Company",
+          "location": {
+            "_id": "5c88fa8cf4afda39709c2955",
+            "description": "London, UK",
+            "type": "Point",
+            "coordinates": [-0.1276, 51.5074]
+          },
+          "country": "United Kingdom",
+          "city": "London",
+          "address": "27 Monmouth St, London WC2H 9EU",
+          "phoneNumber": "+44 20 7253 4787",
+          "website": "https://www.monmouthcoffee.co.uk/",
+          "description": "Monmouth Coffee Company is a renowned coffee roaster and retailer based in London. They source high-quality beans from around the world and roast them to perfection, offering a range of specialty coffees."
+        }
+      ]
+    },
+    {
+      "name": "Colombian Supremo",
+      "origin": "Medellín, Colombia",
+      "roastLevel": "Medium",
+      "flavorNotes": ["Chocolate", "Nutty", "Caramel"],
+      "aroma": "Sweet and nutty",
+      "acidity": 3.8,
+      "body": 4.0,
+      "price": 21.99,
+      "ratingsAverage": 4.5,
+      "ratingsQuantity": 7,
+      "summary": "Rich chocolate flavor with hints of nut and caramel.",
+      "image": "colombian_supremo.jpg",
+      "vendors": [
+        {
+          "name": "Juan Valdez Café",
+          "location": {
+            "_id": "5c88fa8cf4afda39709c2956",
+            "description": "Bogotá, Colombia",
+            "type": "Point",
+            "coordinates": [-74.0721, 4.7109]
+          },
+          "country": "Colombia",
+          "city": "Bogotá",
+          "address": "Cra. 13 #74-85, Bogotá, Colombia",
+          "phoneNumber": "+57 1 3218080",
+          "website": "https://www.juanvaldezcafe.com/",
+          "description": "Juan Valdez Café is a Colombian coffeehouse chain known for promoting Colombian coffee worldwide. They offer a variety of Colombian coffee beans, including the renowned Colombian Supremo."
+        },
+        {
+          "name": "Blue Bottle Coffee",
+          "location": {
+            "_id": "5c88fa8cf4afda39709c2957",
+            "description": "Oakland, USA",
+            "type": "Point",
+            "coordinates": [-122.2711, 37.8044]
+          },
+          "country": "United States",
+          "city": "Oakland",
+          "address": "300 Webster St, Oakland, CA 94607",
+          "phoneNumber": "+1 (510) 653-3394",
+          "website": "https://bluebottlecoffee.com/",
+          "description": "Blue Bottle Coffee is a specialty coffee roaster and retailer headquartered in Oakland, California. They are committed to sourcing and roasting the finest quality coffee beans from around the world."
+        }
+      ]
+    },
+    {
+      "name": "Brazilian Santos",
+      "origin": "Santos, Brazil",
+      "roastLevel": "Medium-Dark",
+      "flavorNotes": ["Chocolate", "Toffee", "Spice"],
+      "aroma": "Rich and spicy",
+      "acidity": 3.5,
+      "body": 4.2,
+      "price": 19.99,
+      "ratingsAverage": 4.2,
+      "ratingsQuantity": 4,
+      "summary": "Smooth with a balance of chocolate and spice.",
+      "image": "brazilian_santos.jpg",
+      "vendors": [
+        {
+          "name": "Café do Mercado",
+          "location": {
+            "_id": "5c88fa8cf4afda39709c2958",
+            "description": "São Paulo, Brazil",
+            "type": "Point",
+            "coordinates": [-46.6333, -23.5505]
+          },
+          "country": "Brazil",
+          "city": "São Paulo",
+          "address": "Rua da Cantareira, 306 - Sé, São Paulo - SP, 01024-000",
+          "phoneNumber": "+55 11 3313-3364",
+          "website": "https://www.cafedomercado.com.br/",
+          "description": "Café do Mercado is a coffeehouse located in São Paulo's Mercado Municipal, offering a wide selection of Brazilian coffee beans. They are known for their commitment to quality and sustainability."
+        },
+        {
+          "name": "Intelligentsia Coffee",
+          "location": {
+            "_id": "5c88fa8cf4afda39709c2959",
+            "description": "Chicago, USA",
+            "type": "Point",
+            "coordinates": [-87.6298, 41.8781]
+          },
+          "country": "United States",
+          "city": "Chicago",
+          "address": "1850 W Fulton St, Chicago, IL 60612",
+          "phoneNumber": "+1 312-829-4795",
+          "website": "https://www.intelligentsiacoffee.com/",
+          "description": "Intelligentsia Coffee is a specialty coffee roaster and retailer with locations across the United States. They are dedicated to sourcing, roasting, and serving the finest coffees from around the world."
+        }
+      ]
+    },
+    {
+      "name": "Costa Rican Tarrazú",
+      "origin": "Tarrazú, Costa Rica",
+      "roastLevel": "Light-Medium",
+      "flavorNotes": ["Citrus", "Honey", "Bright"],
+      "aroma": "Fruity and floral",
+      "acidity": 4.2,
+      "body": 3.5,
+      "price": 21.99,
+      "ratingsAverage": 4.6,
+      "ratingsQuantity": 3,
+      "summary": "Love the bright acidity and honey sweetness. A delightful cup!",
+      "image": "bean1.jpg",
+      "vendors": [
+        {
+          "name": "Starbucks",
+          "location": {
+            "_id": "5c88fa8cf4afda39709c2960",
+            "description": "Seattle, USA",
+            "type": "Point",
+            "coordinates": [-122.3321, 47.6062]
+          },
+          "country": "United States",
+          "city": "Seattle",
+          "address": "2401 Utah Ave S, Seattle, WA 98134",
+          "phoneNumber": "+1 206-447-1575",
+          "website": "https://www.starbucks.com/",
+          "description": "Starbucks is a multinational coffeehouse chain known for its wide range of coffee beverages. They source beans from various regions and offer a diverse menu to cater to different tastes."
+        },
+        {
+          "name": "Origo",
+          "location": {
+            "_id": "5c88fa8cf4afda39709c2961",
+            "description": "Bucharest, Romania",
+            "type": "Point",
+            "coordinates": [26.1025, 44.4268]
+          },
+          "country": "Romania",
+          "city": "Bucharest",
+          "address": "Strada Lipscani 9, București 030037",
+          "phoneNumber": "+40 730 055 727",
+          "website": "https://www.origocoffee.ro/",
+          "description": "Origo is a specialty coffee shop located in the heart of Bucharest. They are passionate about offering high-quality coffee beans from around the world and providing exceptional coffee experiences."
+        }
+      ]
+    }
+  ]
+  
