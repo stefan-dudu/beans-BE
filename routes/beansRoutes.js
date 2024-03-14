@@ -1,10 +1,11 @@
 const express = require('express');
 const beanController = require('../controllers/beanController');
 const authController = require('../controllers/authController');
+const reviewRouter = require('./reviewsRoutes');
 
 const router = express.Router();
 
-// router.param('id', beanController.checkID);
+router.use('/:beanId/reviews', reviewRouter);
 
 router
   .route('/top-5')

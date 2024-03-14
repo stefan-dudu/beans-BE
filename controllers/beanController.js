@@ -2,6 +2,7 @@ const Bean = require('../models/beanModel');
 const APIFeatures = require('../utils/apiFeatures');
 const AppError = require('../utils/appError');
 const catchAsync = require('../utils/catchAsync');
+const factory = require('./handlerFactory');
 
 exports.aliasTopBeans = (req, res, next) => {
   req.query.limit = '5';
@@ -67,16 +68,18 @@ exports.updateBean = catchAsync(async (req, res, next) => {
   });
 });
 
-exports.deleteBean = catchAsync(async (req, res, next) => {
-  const bean = await Bean.findByIdAndDelete(req.params.id);
-  if (!bean) {
-    return next(new AppError('No bean found with this id', 404));
-  }
-  res.status(204).json({
-    status: 'success',
-    data: null,
-  });
-});
+exports.deleteBean = factory.deleteOne(Bean);
+
+// exports.deleteBean = catchAsync(async (req, res, next) => {
+//   const bean = await Bean.findByIdAndDelete(req.params.id);
+//   if (!bean) {
+//     return next(new AppError('No bean found with this id', 404));
+//   }
+//   res.status(204).json({
+//     status: 'success',
+//     data: null,
+//   });
+// });
 
 exports.getBeanStats = catchAsync(async (req, res, next) => {
   const stats = await Bean.aggregate([
