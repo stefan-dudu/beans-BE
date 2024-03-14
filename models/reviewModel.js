@@ -33,6 +33,14 @@ const reviewSchema = new mongoose.Schema(
   },
 );
 
+reviewSchema.pre(/^find/, function (next) {
+  this.populate({
+    path: 'user',
+    select: 'name photo',
+  });
+  next();
+});
+
 // reviewSchema.index({ bean: 1, user: 1 }, { unique: true });
 
 // reviewSchema.pre(/^find/, function (next) {

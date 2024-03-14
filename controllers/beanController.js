@@ -39,7 +39,7 @@ exports.createBean = catchAsync(async (req, res, next) => {
 });
 
 exports.getBeanById = catchAsync(async (req, res, next) => {
-  const bean = await Bean.findById(req.params.id);
+  const bean = await Bean.findById(req.params.id).populate('reviews');
 
   if (!bean) {
     return next(new AppError('No bean found with this id', 404));
