@@ -28,17 +28,6 @@ exports.getAllBeans = catchAsync(async (req, res) => {
   });
 });
 
-exports.createBean = catchAsync(async (req, res, next) => {
-  const newBean = await Bean.create(req.body);
-
-  res.status(201).json({
-    status: 'success',
-    data: {
-      beans: newBean,
-    },
-  });
-});
-
 exports.getBeanById = catchAsync(async (req, res, next) => {
   const bean = await Bean.findById(req.params.id).populate('reviews');
 
@@ -51,35 +40,9 @@ exports.getBeanById = catchAsync(async (req, res, next) => {
   });
 });
 
-exports.updateBean = catchAsync(async (req, res, next) => {
-  const bean = await Bean.findByIdAndUpdate(req.params.id, req.body, {
-    new: true,
-    runValidators: true,
-  });
-
-  if (!bean) {
-    return next(new AppError('No bean found with this id', 404));
-  }
-  res.status(200).json({
-    status: 'success',
-    data: {
-      bean,
-    },
-  });
-});
-
+exports.updateBean = factory.updateOne(Bean);
 exports.deleteBean = factory.deleteOne(Bean);
-
-// exports.deleteBean = catchAsync(async (req, res, next) => {
-//   const bean = await Bean.findByIdAndDelete(req.params.id);
-//   if (!bean) {
-//     return next(new AppError('No bean found with this id', 404));
-//   }
-//   res.status(204).json({
-//     status: 'success',
-//     data: null,
-//   });
-// });
+exports.createBean = factory.createOne(Bean);
 
 exports.getBeanStats = catchAsync(async (req, res, next) => {
   const stats = await Bean.aggregate([
