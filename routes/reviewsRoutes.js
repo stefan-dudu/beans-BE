@@ -11,12 +11,13 @@ router
   .post(
     authController.protect,
     authController.restrictTo('user'),
-    reviewController.setTourUserIds,
+    reviewController.setBeanUserIds,
     reviewController.createReview,
   );
 
 router
   .route('/:id')
+  .get(reviewController.getReview)
   .patch(reviewController.updateReview)
   .delete(reviewController.deleteReview);
 

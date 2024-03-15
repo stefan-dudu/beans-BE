@@ -1,6 +1,4 @@
 const Bean = require('../models/beanModel');
-const APIFeatures = require('../utils/apiFeatures');
-const AppError = require('../utils/appError');
 const catchAsync = require('../utils/catchAsync');
 const factory = require('./handlerFactory');
 
@@ -13,33 +11,8 @@ exports.aliasTopBeans = (req, res, next) => {
 };
 
 // Controllers
-exports.getAllBeans = catchAsync(async (req, res) => {
-  const features = new APIFeatures(Bean.find(), req.query)
-    .filter()
-    .sort()
-    .limitFields()
-    .paginate();
-  const allBeans = await features.query;
-
-  res.status(200).json({
-    status: 'success',
-    results: allBeans.length,
-    data: { allBeans },
-  });
-});
-
-exports.getBeanById = catchAsync(async (req, res, next) => {
-  const bean = await Bean.findById(req.params.id).populate('reviews');
-
-  if (!bean) {
-    return next(new AppError('No bean found with this id', 404));
-  }
-  res.status(200).json({
-    status: 'success',
-    data: { bean },
-  });
-});
-
+exports.getAllBeans = factory.getAll(Bean);
+exports.getBeanById = factory.getOne(Bean, { path: 'reviews' });
 exports.updateBean = factory.updateOne(Bean);
 exports.deleteBean = factory.deleteOne(Bean);
 exports.createBean = factory.createOne(Bean);
