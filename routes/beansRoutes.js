@@ -12,16 +12,30 @@ router
   .get(beanController.aliasTopBeans, beanController.getAllBeans);
 
 router.route('/beans-stats').get(beanController.getBeanStats);
-router.route('/flavour-notes/:flavour').get(beanController.getFlavourNotes);
+router
+  .route('/flavour-notes/:flavour')
+  .get(
+    authController.protect,
+    authController.restrictTo('admin'),
+    beanController.getFlavourNotes,
+  );
 
 router
   .route('/')
-  .get(authController.protect, beanController.getAllBeans)
-  .post(beanController.createBean);
+  .get(beanController.getAllBeans)
+  .post(
+    authController.protect,
+    authController.restrictTo('admin'),
+    beanController.createBean,
+  );
 router
   .route('/:id')
   .get(beanController.getBeanById)
-  .patch(beanController.updateBean)
+  .patch(
+    authController.protect,
+    authController.restrictTo('admin'),
+    beanController.updateBean,
+  )
   .delete(
     authController.protect,
     authController.restrictTo('admin'),
