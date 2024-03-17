@@ -44,6 +44,7 @@ const beanSchema = new mongoose.Schema(
       default: 3.01,
       min: [1, 'Rating must be above 1.0'],
       max: [5, 'Rating must be bellow 5.0'],
+      set: (val) => Math.round(val * 10) / 10,
     },
     ratingsQuantity: { type: Number, default: 0 },
     summary: {
@@ -72,6 +73,8 @@ const beanSchema = new mongoose.Schema(
   },
 );
 
+beanSchema.index({ price: 1, ratingsAverage: -1 });
+beanSchema.index({ slug: 1 });
 // Virtual populate
 beanSchema.virtual('reviews', {
   ref: 'Review',

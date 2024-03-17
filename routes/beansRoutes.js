@@ -25,7 +25,7 @@ router
   .get(beanController.getAllBeans)
   .post(
     authController.protect,
-    authController.restrictTo('admin'),
+    authController.restrictTo('user'),
     beanController.createBean,
   );
 router
