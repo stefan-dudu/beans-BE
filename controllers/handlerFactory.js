@@ -88,3 +88,30 @@ exports.getAll = (Model) =>
       },
     });
   });
+
+exports.searchBean = (Model) =>
+  catchAsync(async (req, res, next) => {
+    let filter = {};
+    if (req.params.term) {
+      const regex = new RegExp(req.params.term, 'i');
+      filter = {
+        $or: [{ slug: { $regex: regex } }, { brand: { $regex: regex } }],
+      };
+    }
+
+    const features = new APIFeatures(Model.find(filter), req.query)
+      .filter()
+      .sort()
+      .limitFields()
+      .paginate();
+
+    const document = await features.query;
+
+    res.status(200).json({
+      status: 'success',
+      results: document.length,
+      data: {
+        data: document,
+      },
+    });
+  });

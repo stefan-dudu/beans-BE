@@ -13,6 +13,10 @@ const beanSchema = new mongoose.Schema(
       minlength: [5, 'A bean name can have no less then 5 characters'],
       // validate: [validator.isAlpha, 'The bean name cannot contain numbers'],
     },
+    brand: {
+      type: String,
+      required: [true, 'A bean must be part of a brand'],
+    },
     slug: String,
     origin: {
       type: String,
@@ -83,7 +87,8 @@ beanSchema.virtual('reviews', {
 });
 
 beanSchema.pre('save', function (next) {
-  this.slug = slugify(this.name, { lower: true });
+  const text = `${this.brand} ${this.name}`;
+  this.slug = slugify(text, { lower: true });
   next();
 });
 

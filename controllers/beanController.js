@@ -11,6 +11,7 @@ exports.aliasTopBeans = (req, res, next) => {
 };
 
 // Controllers
+exports.searchBeans = factory.searchBean(Bean);
 exports.getAllBeans = factory.getAll(Bean);
 exports.getBeanById = factory.getOne(Bean, { path: 'reviews' });
 exports.updateBean = factory.updateOne(Bean);

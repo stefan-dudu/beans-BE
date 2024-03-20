@@ -19,6 +19,7 @@ router
     authController.restrictTo('admin'),
     beanController.getFlavourNotes,
   );
+router.route('/search-bean/:term').get(beanController.searchBeans);
 
 router
   .route('/')
