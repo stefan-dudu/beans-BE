@@ -3,7 +3,7 @@ const catchAsync = require('../utils/catchAsync');
 const factory = require('./handlerFactory');
 
 exports.aliasTopBeans = (req, res, next) => {
-  req.query.limit = '5';
+  req.query.limit = '7';
   req.query.sort = '-ratingsAverage,price';
   // what fields to return if we use the down below
   // req.query.fields = 'name, price'

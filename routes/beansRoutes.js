@@ -8,7 +8,7 @@ const router = express.Router();
 router.use('/:beanId/reviews', reviewRouter);
 
 router
-  .route('/top-5')
+  .route('/top-7')
   .get(beanController.aliasTopBeans, beanController.getAllBeans);
 
 router.route('/beans-stats').get(beanController.getBeanStats);
