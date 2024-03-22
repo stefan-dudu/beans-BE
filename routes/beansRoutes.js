@@ -31,7 +31,8 @@ router
   );
 router
   .route('/:id')
-  .get(beanController.getBeanById)
+  // TODO: here we use isloggedin instead of protect. Also this to be taken in consideration
+  .get(authController.isLoggedIn, beanController.getBeanById)
   .patch(
     authController.protect,
     authController.restrictTo('admin'),

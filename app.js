@@ -52,12 +52,12 @@ app.use(mongoSantize());
 app.use(xss());
 
 // Test MW
-app.use((req, res, next) => {
-  req.requesTime = new Date().toISOString();
-  console.log('req ---', req.cookies);
-  console.log('test mw');
-  next();
-});
+// app.use((req, res, next) => {
+//   req.requesTime = new Date().toISOString();
+//   // console.log('req ---', req.cookies);
+//   // console.log('test mw');
+//   next();
+// });
 
 // Routes
 app.use('/api/v1/beans', beansRouter);

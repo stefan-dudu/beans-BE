@@ -75,6 +75,17 @@ exports.login = catchAsync(async (req, res, next) => {
   createSendToken(user, 200, res);
 });
 
+exports.logout = (req, res) => {
+  res.cookie('jwt', 'loggedout', {
+    expires: new Date(Date.now() + 1 * 1000),
+    secure: true, // Required for SameSite=None
+    sameSite: 'None', // Required for cross-site requests
+    httpOnly: true,
+  });
+
+  res.status(200).json({ status: 'success' });
+};
+
 exports.protect = catchAsync(async (req, res, next) => {
   console.log('protect 🛡️');
   // 1) get token adn check it it's there
@@ -113,6 +124,31 @@ exports.protect = catchAsync(async (req, res, next) => {
   //   Grant access to potected route
   req.user = currentUser;
   next();
+});
+
+exports.isLoggedIn = catchAsync(async (req, res, next) => {
+  if (req.cookies.jwt) {
+    // 2) Verification token
+    const decoded = await promisify(jwt.verify)(
+      req.cookies.jwt,
+      process.env.JWT_SECRET,
+    );
+
+    // 3) Check if user still exists
+
+    const currentUser = await User.findById(decoded.id);
+
+    if (!currentUser) {
+      return next();
+    }
+    // 4) Check if user changed password after the token was issued
+    if (currentUser.changedPasswordAfter(decoded.iat)) {
+      return next();
+    }
+    //   THERE IS A LOGGED IN USER
+    req.user = currentUser;
+    next();
+  }
 });
 
 // restrict certain routes for different user roles
