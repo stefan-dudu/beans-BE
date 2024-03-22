@@ -5,7 +5,9 @@ const helmet = require('helmet');
 const mongoSantize = require('express-mongo-sanitize');
 const xss = require('xss-clean');
 const hpp = require('hpp');
-// const cors = require('cors');
+const cors = require('cors');
+const cookieParser = require('cookie-parser');
+
 const AppError = require('./utils/appError');
 const globalErrorHandler = require('./controllers/errorController');
 
@@ -14,7 +16,12 @@ const userRouter = require('./routes/userRoutes');
 const reviewRouter = require('./routes/reviewsRoutes');
 
 const app = express();
-// app.use(cors());
+app.use(
+  cors({
+    origin: 'http://localhost:3000',
+    credentials: true,
+  }),
+);
 
 //  1) GLOBAL MIDDLEWARES
 
@@ -36,12 +43,21 @@ app.use('/api', limiter);
 
 // body parser eading data from body into req.body
 app.use(express.json({ limit: '10kb' }));
+app.use(cookieParser());
 
 // Data sanitization against NoSQL QUERY INJECTION
 app.use(mongoSantize());
 
 // Data sanitization against XSS
 app.use(xss());
+
+// Test MW
+app.use((req, res, next) => {
+  req.requesTime = new Date().toISOString();
+  console.log('req ---', req.cookies);
+  console.log('test mw');
+  next();
+});
 
 // Routes
 app.use('/api/v1/beans', beansRouter);
