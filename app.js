@@ -18,7 +18,11 @@ const reviewRouter = require('./routes/reviewsRoutes');
 const app = express();
 app.use(
   cors({
-    origin: ['http://localhost:3000', 'https://beans-frontend.vercel.app/'],
+    origin: [
+      'http://localhost:3000',
+      'https://beans-frontend.vercel.app/',
+      'https://baristretto.com/',
+    ],
     credentials: true,
   }),
 );
