@@ -5,7 +5,7 @@ const reviewSchema = new mongoose.Schema(
   {
     review: {
       type: String,
-      required: [true, 'There has to be a review'],
+      required: [false, 'There has to be a review'],
     },
     rating: {
       type: Number,
