@@ -29,6 +29,9 @@ router
     authController.restrictTo('user'),
     beanController.createBean,
   );
+
+router.route('/bean-selector').post(beanController.getBeanSelector);
+
 router
   .route('/:id')
   // TODO: here we use isloggedin instead of protect. Also this to be taken in consideration

@@ -89,6 +89,41 @@ exports.getAll = (Model) =>
     });
   });
 
+exports.getBeanSelector = (Model) =>
+  catchAsync(async (req, res, next) => {
+    let filter = {};
+    if (req.params.beanId) {
+      filter = { bean: req.params.beanId };
+    }
+
+    const { roastLevel, brand } = req.body;
+
+    // Construct filter based on request body data
+    if (roastLevel) {
+      filter.roastLevel = roastLevel;
+    }
+
+    if (brand && brand.length > 0) {
+      filter.brand = { $in: brand };
+    }
+
+    const features = new APIFeatures(Model.find(filter), req.query)
+      .filter()
+      .sort()
+      .limitFields()
+      .paginate();
+
+    const document = await features.query;
+
+    res.status(200).json({
+      status: 'success',
+      results: document.length,
+      data: {
+        data: document,
+      },
+    });
+  });
+
 exports.searchBean = (Model) =>
   catchAsync(async (req, res, next) => {
     let filter = {};
