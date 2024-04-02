@@ -70,6 +70,10 @@ const beanSchema = new mongoose.Schema(
         description: String,
       },
     ],
+    inReview: {
+      type: Boolean,
+      default: true,
+    },
   },
   {
     toJSON: { virtuals: true },
