@@ -70,36 +70,12 @@ const beanSchema = new mongoose.Schema(
         description: String,
       },
     ],
-    inReview: {
-      type: Boolean,
-      default: true,
-    },
   },
   {
     toJSON: { virtuals: true },
     toObject: { virtuals: true },
   },
 );
-
-beanSchema.pre(/^find/, function (next) {
-  if (this._conditions.inReview === true) {
-    // console.log('cond 1 ran - get in review');
-    this.find({ inReview: true });
-  } else {
-    // console.log('cond 2 ran - get all');
-    this.find({ inReview: { $ne: true } });
-  }
-
-  next();
-});
-
-// AGGREGATION MIDDLEWARE
-beanSchema.pre('aggregate', function (next) {
-  this.pipeline().unshift({ $match: { inReview: { $ne: true } } });
-
-  console.log(this.pipeline());
-  next();
-});
 
 beanSchema.index({ price: 1, ratingsAverage: -1 });
 beanSchema.index({ slug: 1 });

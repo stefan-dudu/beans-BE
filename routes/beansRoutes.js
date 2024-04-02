@@ -7,8 +7,6 @@ const router = express.Router();
 
 router.use('/:beanId/reviews', reviewRouter);
 
-router.get('/inReview-beans', beanController.getAllInReview);
-
 router
   .route('/top-7')
   .get(beanController.aliasTopBeans, beanController.getAllBeans);
