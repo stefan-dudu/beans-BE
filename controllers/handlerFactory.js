@@ -1,6 +1,7 @@
 const catchAsync = require('../utils/catchAsync');
 const APIFeatures = require('../utils/apiFeatures');
 const AppError = require('../utils/appError');
+const Bean = require('../models/beanModel');
 
 exports.deleteOne = (Model) =>
   catchAsync(async (req, res, next) => {
@@ -77,6 +78,28 @@ exports.getAll = (Model) =>
       .paginate();
 
     // const document = await features.query.explain();
+    const document = await features.query;
+
+    // C. SEND RESPONSE
+    res.status(200).json({
+      status: 'success',
+      results: document.length,
+      data: {
+        data: document,
+      },
+    });
+  });
+
+exports.getAllInReview = () =>
+  catchAsync(async (req, res, next) => {
+    // to allow for nested Get reviews on bean
+
+    const features = new APIFeatures(Bean.find({ inReview: true }), req.query)
+      .filter()
+      .sort()
+      .limitFields()
+      .paginate();
+
     const document = await features.query;
 
     // C. SEND RESPONSE
