@@ -89,9 +89,47 @@ exports.getAll = (Model) =>
     });
   });
 
+exports.getAllBeans = (Model) =>
+  catchAsync(async (req, res, next) => {
+    const features = new APIFeatures(Model.find({ inReview: false }), req.query)
+      .filter()
+      .sort()
+      .limitFields()
+      .paginate();
+
+    const document = await features.query;
+
+    res.status(200).json({
+      status: 'success',
+      results: document.length,
+      data: {
+        data: document,
+      },
+    });
+  });
+
+exports.getBeansInReview = (Model) =>
+  catchAsync(async (req, res, next) => {
+    const features = new APIFeatures(Model.find({ inReview: true }), req.query)
+      .filter()
+      .sort()
+      .limitFields()
+      .paginate();
+
+    const document = await features.query;
+
+    res.status(200).json({
+      status: 'success',
+      results: document.length,
+      data: {
+        data: document,
+      },
+    });
+  });
+
 exports.getBeanSelector = (Model) =>
   catchAsync(async (req, res, next) => {
-    let filter = {};
+    let filter = { inReview: false };
     if (req.params.beanId) {
       filter = { bean: req.params.beanId };
     }
@@ -126,12 +164,11 @@ exports.getBeanSelector = (Model) =>
 
 exports.searchBean = (Model) =>
   catchAsync(async (req, res, next) => {
-    let filter = {};
+    const filter = { inReview: false };
+
     if (req.params.term) {
       const regex = new RegExp(req.params.term, 'i');
-      filter = {
-        $or: [{ slug: { $regex: regex } }, { brand: { $regex: regex } }],
-      };
+      filter.$or = [{ slug: { $regex: regex } }, { brand: { $regex: regex } }];
     }
 
     const features = new APIFeatures(Model.find(filter), req.query)

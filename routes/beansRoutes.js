@@ -30,6 +30,8 @@ router
     beanController.createBean,
   );
 
+router.route('/inReview').get(beanController.getBeansInReview);
+
 router.route('/bean-selector').post(beanController.getBeanSelector);
 
 router
