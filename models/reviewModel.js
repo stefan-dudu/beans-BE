@@ -80,11 +80,11 @@ reviewSchema.post('save', function () {
 
 reviewSchema.pre(/^findOneAnd/, async function (next) {
   // this keyword would give us access only to the query
-  console.log('this - query', this);
-  console.log('=========================');
+  // console.log('this - query', this);
+  // console.log('=========================');
   // this way we have access to the document
-  this.r = await this.findOne();
-  console.log('document', this.r);
+  // this.r = await this.findOne();
+  this.r = await this.clone().findOne();
   next();
 });
 

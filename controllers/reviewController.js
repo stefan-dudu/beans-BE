@@ -12,3 +12,5 @@ exports.getReview = factory.getOne(Review);
 exports.createReview = factory.createOne(Review);
 exports.updateReview = factory.updateOne(Review);
 exports.deleteReview = factory.deleteOne(Review);
+
+exports.getReviewForBean = factory.getReviewForBeanAndUser(Review);

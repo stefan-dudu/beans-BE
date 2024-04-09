@@ -134,15 +134,15 @@ exports.getBeanSelector = (Model) =>
       filter = { bean: req.params.beanId };
     }
 
-    const { roastLevel, brand } = req.body;
+    const { roastLevel, type } = req.body;
 
     // Construct filter based on request body data
     if (roastLevel) {
       filter.roastLevel = roastLevel;
     }
 
-    if (brand && brand.length > 0) {
-      filter.brand = { $in: brand };
+    if (type && type.length > 0) {
+      filter.type = { $in: type };
     }
 
     const features = new APIFeatures(Model.find(filter), req.query)
@@ -184,6 +184,30 @@ exports.searchBean = (Model) =>
       results: document.length,
       data: {
         data: document,
+      },
+    });
+  });
+
+exports.getReviewForBeanAndUser = (Model) =>
+  catchAsync(async (req, res, next) => {
+    // Extract beanId and userId from request parameters
+    const { beanId, userId } = req.params;
+
+    // Find the review for the specified beanId and userId
+    const review = await Model.find({ bean: beanId, user: userId });
+
+    // If no review found, send 404 error
+    if (!review) {
+      return next(
+        new AppError('No review found for the specified bean and user', 404),
+      );
+    }
+
+    // Send the review data in the response
+    res.status(200).json({
+      status: 'success',
+      data: {
+        review,
       },
     });
   });

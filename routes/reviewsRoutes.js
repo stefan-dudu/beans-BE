@@ -21,4 +21,6 @@ router
   .patch(authController.restrictTo('user'), reviewController.updateReview)
   .delete(authController.restrictTo('user'), reviewController.deleteReview);
 
+router.route('/:beanId/:userId').get(reviewController.getReviewForBean);
+
 module.exports = router;
