@@ -20,8 +20,8 @@ app.use(
   cors({
     origin: [
       'http://localhost:3000',
-      'https://beans-frontend.vercel.app/',
-      'https://baristretto.com/',
+      'https://fotbalist.net',
+      'https://baristretto.com',
     ],
     credentials: true,
   }),
