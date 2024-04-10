@@ -28,7 +28,7 @@ const createSendToken = (user, statusCode, res) => {
     sameSite: 'None', // Required for cross-site requests
     credentials: 'include',
   };
-  if (process.env.NODE_ENV === 'production') cookieOptions.secure = false;
+  if (process.env.NODE_ENV === 'production') cookieOptions.secure = true;
   res.cookie('jwt', token, cookieOptions);
 
   // removes the password from the output
