@@ -21,8 +21,8 @@ const createSendToken = (user, statusCode, res) => {
     expires: new Date(
       Date.now() + process.env.JWT_COOKIE_EXPIRES_IN * 24 * 60 * 60 * 1000,
     ),
-    // domain: 'fotbalist.net',
-    // path: '/',
+    domain: 'beans-be.vercel.app',
+    path: '/',
     httpOnly: true,
     secure: true,
     sameSite: 'None', // Required for cross-site requests
