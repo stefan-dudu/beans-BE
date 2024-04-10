@@ -21,12 +21,14 @@ const createSendToken = (user, statusCode, res) => {
     expires: new Date(
       Date.now() + process.env.JWT_COOKIE_EXPIRES_IN * 24 * 60 * 60 * 1000,
     ),
+    domain: 'fotbalist.net',
+    path: '/',
     httpOnly: true,
-    secure: true, // Required for SameSite=None
-    sameSite: 'None', // Required for cross-site requests
+    secure: true,
+    sameSite: 'Lax', // Required for cross-site requests
     credentials: 'include',
   };
-  if (process.env.NODE_ENV === 'production') cookieOptions.secure = false;
+  if (process.env.NODE_ENV === 'production') cookieOptions.secure = true;
   res.cookie('jwt', token, cookieOptions);
 
   // removes the password from the output
@@ -81,8 +83,8 @@ exports.login = catchAsync(async (req, res, next) => {
 exports.logout = (req, res) => {
   res.cookie('jwt', 'loggedout', {
     expires: new Date(Date.now() + 1 * 1000),
-    secure: true, // Required for SameSite=None
-    sameSite: 'None', // Required for cross-site requests
+    secure: true,
+    sameSite: 'Lax', // Required for cross-site requests
     httpOnly: true,
   });
 
