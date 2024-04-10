@@ -20,7 +20,7 @@ app.use(
   cors({
     origin: [
       'http://localhost:3000',
-      'https://fotbalist.net',
+      'https://fotbalist.net/',
       'https://baristretto.com',
     ],
     credentials: true,
