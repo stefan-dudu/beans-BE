@@ -25,7 +25,7 @@ const createSendToken = (user, statusCode, res) => {
     path: '/',
     httpOnly: true,
     secure: true,
-    sameSite: 'Lax', // Required for cross-site requests
+    sameSite: 'None', // Required for cross-site requests
     credentials: 'include',
   };
   if (process.env.NODE_ENV === 'production') cookieOptions.secure = true;
