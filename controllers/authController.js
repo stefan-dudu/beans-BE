@@ -25,11 +25,18 @@ const createSendToken = (user, statusCode, res) => {
     path: '/',
     httpOnly: true,
     secure: true,
-    sameSite: 'Lax', // Required for cross-site requests
+    sameSite: 'Lax',
     credentials: 'include',
   };
-  if (process.env.NODE_ENV === 'production') cookieOptions.secure = true;
+
+  if (process.env.NODE_ENV === 'development') {
+    cookieOptions.domain = '';
+    cookieOptions.sameSite = 'None';
+  }
+
   res.cookie('jwt', token, cookieOptions);
+
+  // console.log('process.env.NODE_ENV', process.env.NODE_ENV);
 
   // removes the password from the output
   user.password = undefined;
