@@ -27,7 +27,7 @@ const beanSchema = new mongoose.Schema(
       required: false,
     },
     processing: String,
-    qGrading: Number,
+    qGrading: String,
     altitude: Number,
     origin: {
       type: String,
