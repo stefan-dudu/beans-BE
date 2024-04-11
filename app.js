@@ -20,8 +20,8 @@ app.use(
   cors({
     origin: [
       'http://localhost:3000',
-      'https://fotbalist.net',
       'https://baristretto.com',
+      'https://api.mapbox.com',
     ],
     credentials: true,
   }),

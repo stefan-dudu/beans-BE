@@ -18,6 +18,17 @@ const beanSchema = new mongoose.Schema(
       required: [true, 'A bean must be part of a brand'],
     },
     slug: String,
+    type: {
+      type: String,
+      enum: {
+        values: ['Arabica', 'Robusta', 'Blend', ''],
+        message: 'Please choose between the preselected options - bean type',
+      },
+      required: false,
+    },
+    processing: String,
+    qGrading: Number,
+    altitude: Number,
     origin: {
       type: String,
       required: [true, 'A bean must have an origin'],
@@ -41,12 +52,12 @@ const beanSchema = new mongoose.Schema(
     },
     price: {
       type: Number,
-      required: true,
+      required: false,
     },
     ratingsAverage: {
       type: Number,
-      default: 3.01,
-      min: [1, 'Rating must be above 1.0'],
+      default: 0,
+      min: [0, 'Rating must be above 1.0'],
       max: [5, 'Rating must be bellow 5.0'],
       set: (val) => Math.round(val * 10) / 10,
     },
