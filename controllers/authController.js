@@ -60,7 +60,7 @@ exports.signup = catchAsync(async (req, res, next) => {
     role: req.body.role,
   });
 
-  const url = `${process.env.DEV_URL}me`;
+  const url = `${process.env.DEV_URL}createbean`;
   await new Email(newUser, url).sendWelcome();
 
   createSendToken(newUser, 201, res);
@@ -91,7 +91,7 @@ exports.logout = (req, res) => {
   res.cookie('jwt', 'loggedout', {
     expires: new Date(Date.now() + 1 * 1000),
     secure: true,
-    sameSite: 'Lax', // Required for cross-site requests
+    sameSite: 'None', // Required for cross-site requests
     httpOnly: true,
   });
 
