@@ -1,4 +1,6 @@
 const User = require('../models/userModel');
+const SavedBeans = require('../models/savedBeansModel');
+const Bean = require('../models/beanModel');
 const catchAsync = require('../utils/catchAsync');
 const AppError = require('../utils/appError');
 const factory = require('./handlerFactory');
@@ -58,6 +60,21 @@ exports.createUser = (req, res) => {
     message: 'This route is not defined! Please use /signup',
   });
 };
+
+exports.getMySavedBeans = catchAsync(async (req, res, next) => {
+  const savedBeans = await SavedBeans.find({ user: req.user.id });
+
+  const beanIDs = savedBeans.map((el) => el.bean);
+  const beans = await Bean.find({ _id: { $in: beanIDs } });
+
+  res.status(200).json({
+    satus: 'success',
+    results: beans.length,
+    data: {
+      beans,
+    },
+  });
+});
 
 exports.getAllUsers = factory.getAll(User);
 exports.updateUser = factory.updateOne(User);

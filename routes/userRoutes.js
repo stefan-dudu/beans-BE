@@ -18,6 +18,7 @@ router.patch('/updateMyPassword', authController.updatePassword);
 router.get('/me', userController.getMe, userController.getUser);
 router.patch('/updateMe', userController.updateMe);
 router.delete('/deleteMe', userController.deleteMe);
+router.get('/saved-beans', userController.getMySavedBeans);
 
 // these bellow should be possible only to admins
 router.use(authController.restrictTo('admin'));

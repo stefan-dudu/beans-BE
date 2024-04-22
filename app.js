@@ -14,6 +14,7 @@ const globalErrorHandler = require('./controllers/errorController');
 const beansRouter = require('./routes/beansRoutes');
 const userRouter = require('./routes/userRoutes');
 const reviewRouter = require('./routes/reviewsRoutes');
+const savedBeansRouter = require('./routes/savedBeansRoutes');
 
 const app = express();
 app.use(
@@ -67,6 +68,7 @@ app.use(xss());
 app.use('/api/v1/beans', beansRouter);
 app.use('/api/v1/users', userRouter);
 app.use('/api/v1/reviews', reviewRouter);
+app.use('/api/v1/saved-beans', savedBeansRouter);
 
 app.all('*', (req, res, next) => {
   next(new AppError(`Can't find ${req.originalUrl} on this server`, 404));
