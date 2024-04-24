@@ -211,3 +211,27 @@ exports.getReviewForBeanAndUser = (Model) =>
       },
     });
   });
+
+exports.getSavedStatusForBeanAndUser = (Model) =>
+  catchAsync(async (req, res, next) => {
+    // Extract beanId and userId from request parameters
+    const { beanId, userId } = req.params;
+
+    // Find the review for the specified beanId and userId
+    const savedItem = await Model.find({ bean: beanId, user: userId });
+
+    // If no savedItem found, send 404 error
+    if (!savedItem) {
+      return next(
+        new AppError('No savedItem found for the specified bean and user', 404),
+      );
+    }
+
+    // Send the savedItem data in the response
+    res.status(200).json({
+      status: 'success',
+      data: {
+        savedItem,
+      },
+    });
+  });

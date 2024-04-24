@@ -15,9 +15,13 @@ const savedBeansSchema = new mongoose.Schema({
     type: Date,
     default: Date.now(),
   },
-  triedIt: {
+  // triedIt: {
+  //   type: Boolean,
+  //   required: [true, 'We got to know if you tried it or not'],
+  // },
+  favourite: {
     type: Boolean,
-    required: [true, 'We got to know if you tried it or not'],
+    default: true,
   },
 });
 
@@ -25,9 +29,10 @@ savedBeansSchema.index({ bean: 1, user: 1 }, { unique: true });
 
 savedBeansSchema.pre(/^find/, function (next) {
   // this points to the current query
-  this.populate('user').populate({
+  // this.populate('user').populate({
+  this.populate({
     path: 'bean',
-    select: 'name',
+    // select: 'name',
   });
   next();
 });

@@ -6,3 +6,6 @@ exports.getSavedBeans = factory.getOne(SavedBeans);
 exports.getAllSavedBeans = factory.getAll(SavedBeans);
 exports.updateSavedBeans = factory.updateOne(SavedBeans);
 exports.deleteSavedBeans = factory.deleteOne(SavedBeans);
+
+exports.getSavedStatusForBean =
+  factory.getSavedStatusForBeanAndUser(SavedBeans);

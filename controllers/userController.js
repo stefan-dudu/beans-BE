@@ -71,7 +71,7 @@ exports.getMySavedBeans = catchAsync(async (req, res, next) => {
     satus: 'success',
     results: beans.length,
     data: {
-      beans,
+      savedBeans,
     },
   });
 });

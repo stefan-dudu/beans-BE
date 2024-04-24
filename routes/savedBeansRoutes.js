@@ -15,4 +15,8 @@ router
   .patch(savedBeansController.updateSavedBeans)
   .delete(savedBeansController.deleteSavedBeans);
 
+router
+  .route('/:beanId/:userId')
+  .get(savedBeansController.getSavedStatusForBean);
+
 module.exports = router;
