@@ -31,7 +31,7 @@ const beanSchema = new mongoose.Schema(
     altitude: Number,
     origin: {
       type: String,
-      required: [true, 'A bean must have an origin'],
+      required: [false, 'A bean must have an origin'],
     },
     roastLevel: {
       type: String,
