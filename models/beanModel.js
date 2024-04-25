@@ -50,6 +50,9 @@ const beanSchema = new mongoose.Schema(
     body: {
       type: Number,
     },
+    sweetness: {
+      type: Number,
+    },
     price: {
       type: Number,
       required: false,
