@@ -97,6 +97,7 @@ const beanSchema = new mongoose.Schema(
 
 beanSchema.index({ price: 1, ratingsAverage: -1 });
 beanSchema.index({ slug: 1 });
+beanSchema.index({ roastLevel: 1 });
 // Virtual populate
 beanSchema.virtual('reviews', {
   ref: 'Review',
