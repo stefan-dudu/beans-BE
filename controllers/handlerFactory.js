@@ -162,6 +162,23 @@ exports.getBeanSelector = (Model) =>
     });
   });
 
+exports.getFarm = (Model) =>
+  catchAsync(async (req, res, next) => {
+    const document = await Model.findOne({ slug: req.params.slug });
+
+    if (!document) {
+      return next(new AppError('Bean not found', 404));
+    }
+
+    res.status(200).json({
+      status: 'success',
+      results: document.length,
+      data: {
+        data: document.locations,
+      },
+    });
+  });
+
 exports.searchBean = (Model) =>
   catchAsync(async (req, res, next) => {
     const filter = { inReview: false };
