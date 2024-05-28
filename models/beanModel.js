@@ -79,7 +79,7 @@ const beanSchema = new mongoose.Schema(
           default: 'Point',
           enum: ['Point'],
         },
-        coordinates: [Number],
+        coordinates: [[Number]],
         address: String,
         description: String,
       },
