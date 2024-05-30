@@ -179,6 +179,23 @@ exports.getFarm = (Model) =>
     });
   });
 
+exports.getLocation = (Model) =>
+  catchAsync(async (req, res, next) => {
+    const document = await Model.findOne({ name: req.params.isoCode });
+
+    if (!document) {
+      return next(new AppError('Bean not found', 404));
+    }
+
+    res.status(200).json({
+      status: 'success',
+      results: document.length,
+      data: {
+        data: document,
+      },
+    });
+  });
+
 exports.searchBean = (Model) =>
   catchAsync(async (req, res, next) => {
     const filter = { inReview: false };

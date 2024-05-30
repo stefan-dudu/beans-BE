@@ -3,7 +3,7 @@ const dotenv = require('dotenv');
 const app = require('./app');
 
 process.on('uncaughtException', (err) => {
-  console.log('UNCOUGHT REJECTION ✌️✌️. Going to sleep');
+  // console.log('UNCOUGHT REJECTION ✌️✌️. Going to sleep');
   console.log(err.name, err.message);
   process.exit(1);
 });
