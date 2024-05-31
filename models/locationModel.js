@@ -22,6 +22,7 @@ const locationSchema = new mongoose.Schema({
   worldShare: Number,
   processing: String,
   challenges: [String],
+  harvest: String,
 });
 
 const Locations = mongoose.model('Locations', locationSchema);
