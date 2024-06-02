@@ -13,6 +13,30 @@ const reviewSchema = new mongoose.Schema(
       min: [1, 'Rating must be above 1.0'],
       max: [5, 'Rating must be below 5.0'],
     },
+    bodyRating: {
+      type: Number,
+      // required: true,
+      min: [1, 'Body rating must be above 1.0'],
+      max: [5, 'Body rating must be below 5.0'],
+    },
+    acidityRating: {
+      type: Number,
+      // required: true,
+      min: [1, 'Acidity rating must be above 1.0'],
+      max: [5, 'Acidity rating must be below 5.0'],
+    },
+    sweetnessRating: {
+      type: Number,
+      // required: true,
+      min: [1, 'Sweetness rating must be above 1.0'],
+      max: [5, 'Sweetness rating must be below 5.0'],
+    },
+    bitternessRating: {
+      type: Number,
+      // required: true,
+      min: [1, 'Bitterness rating must be above 1.0'],
+      max: [5, 'Bitterness rating must be below 5.0'],
+    },
     createdAt: {
       type: Date,
       default: Date.now(),
@@ -49,6 +73,34 @@ reviewSchema.pre(/^find/, function (next) {
   next();
 });
 
+// reviewSchema.statics.calcAverageRatings = async function (beanId) {
+//   const stats = await this.aggregate([
+//     { $match: { bean: beanId } },
+//     {
+//       $group: {
+//         _id: '$bean',
+//         nRating: { $sum: 1 },
+//         avgRating: { $avg: '$rating' },
+//         avgBodyRating: { $avg: '$bodyRating' },
+//       },
+//     },
+//   ]);
+//   console.log(stats);
+//   if (stats.length > 0) {
+//     await Bean.findByIdAndUpdate(beanId, {
+//       ratingsQuantity: stats[0].nRating,
+//       ratingsAverage: stats[0].avgRating,
+//       bodyAverage: stats[0].avgBodyRating,
+//     });
+//   } else {
+//     await Bean.findByIdAndUpdate(beanId, {
+//       ratingsQuantity: 0,
+//       ratingsAverage: 4.5,
+//       bodyAverage: 3,
+//     });
+//   }
+// };
+
 reviewSchema.statics.calcAverageRatings = async function (beanId) {
   const stats = await this.aggregate([
     { $match: { bean: beanId } },
@@ -57,19 +109,31 @@ reviewSchema.statics.calcAverageRatings = async function (beanId) {
         _id: '$bean',
         nRating: { $sum: 1 },
         avgRating: { $avg: '$rating' },
+        avgBodyRating: { $avg: '$bodyRating' },
+        avgAcidityRating: { $avg: '$acidityRating' },
+        avgSweetnessRating: { $avg: '$sweetnessRating' },
+        avgBitternessRating: { $avg: '$bitternessRating' },
       },
     },
   ]);
-  console.log(stats);
+
   if (stats.length > 0) {
     await Bean.findByIdAndUpdate(beanId, {
       ratingsQuantity: stats[0].nRating,
       ratingsAverage: stats[0].avgRating,
+      bodyAverage: stats[0].avgBodyRating,
+      acidityAverage: stats[0].avgAcidityRating,
+      sweetnessAverage: stats[0].avgSweetnessRating,
+      bitternessAverage: stats[0].avgBitternessRating,
     });
   } else {
     await Bean.findByIdAndUpdate(beanId, {
       ratingsQuantity: 0,
       ratingsAverage: 4.5,
+      bodyAverage: 3,
+      acidityAverage: 3,
+      sweetnessAverage: 3,
+      bitternessAverage: 3,
     });
   }
 };

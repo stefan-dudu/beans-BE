@@ -44,15 +44,15 @@ const beanSchema = new mongoose.Schema(
     aroma: {
       type: String,
     },
-    acidity: {
-      type: Number,
-    },
-    body: {
-      type: Number,
-    },
-    sweetness: {
-      type: Number,
-    },
+    // acidity: {
+    //   type: Number,
+    // },
+    // body: {
+    //   type: Number,
+    // },
+    // sweetness: {
+    //   type: Number,
+    // },
     price: {
       type: Number,
       required: false,
@@ -65,6 +65,35 @@ const beanSchema = new mongoose.Schema(
       set: (val) => Math.round(val * 10) / 10,
     },
     ratingsQuantity: { type: Number, default: 0 },
+    bodyAverage: {
+      type: Number,
+      default: 4.5,
+      min: [0, 'Body average must be above 0.0'],
+      max: [5, 'Body average must be below 5.0'],
+      set: (val) => Math.round(val * 10) / 10,
+    },
+    acidityAverage: {
+      type: Number,
+      default: 3.5,
+      min: [0, 'Acidity average must be above 0.0'],
+      max: [5, 'Acidity average must be below 5.0'],
+      set: (val) => Math.round(val * 10) / 10,
+    },
+    sweetnessAverage: {
+      type: Number,
+      default: 4,
+      min: [0, 'Sweetness average must be above 0.0'],
+      max: [5, 'Sweetness average must be below 5.0'],
+      set: (val) => Math.round(val * 10) / 10,
+    },
+    bitternessAverage: {
+      type: Number,
+      default: 2.5,
+      min: [0, 'Bitterness average must be above 0.0'],
+      max: [5, 'Bitterness average must be below 5.0'],
+      set: (val) => Math.round(val * 10) / 10,
+    },
+
     summary: {
       type: String,
       trim: true,
